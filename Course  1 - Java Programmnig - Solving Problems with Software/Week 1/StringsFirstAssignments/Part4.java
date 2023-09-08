@@ -10,9 +10,12 @@ public class Part4 {
     public static void main(String[] args) {
         URLResource ur = new URLResource("https://www.dukelearntoprogram.com//course2/data/manylinks.html");
         for (String line : ur.lines()) {
-            line = line.toLowerCase();
-            if (line.contains("youtube.com")){
-                  System.out.println(line);
+            int indexPos = (line.toLowerCase()).indexOf("youtube.com");
+            if (indexPos != -1){
+              int startIndex = line.lastIndexOf("\"", indexPos);
+              int stopIndex = line.indexOf("\"", indexPos +1);
+              String link = line.substring(startIndex + 1, stopIndex);
+              System.out.println(link);
             }
           
         }
